@@ -17,6 +17,15 @@
 - [ ] Netfix hinzufügen
 - [ ] Dammtor Kino hinzufügen
 
+## tools
+
+* Nextjs
+* cheerio
+* mongodb
+* skaffold
+* Kubernetes
+* The Movie Database
+
 ## env vars
 
 TMDB_API_KEY
