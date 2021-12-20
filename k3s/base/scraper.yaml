@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scraper
+spec:
+  schedule: "*/20 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: scraper
+            image: registry.tino.sh/scraper
+            command: ["node", "index.js"]
+            env:
+              - name: MONGODB_DB
+                value: "movie"
+              - name: MONGODB_COLLECTION
+                value: "abaton"
+              - name: MONGODB_URI
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: MONGODB_URI
+              - name: TMDB_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: TMDB_API_KEY
+          restartPolicy: OnFailure

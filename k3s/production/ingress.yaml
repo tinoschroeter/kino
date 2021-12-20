@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  name: kino-ingress
+  namespace: kino
+spec:
+  rules:
+  - host: kino.tino.sh
+    http:
+      paths:
+      - pathType: Prefix
+        path: /
+        backend:
+          service:
+            name: kino-service
+            port: 
+              number: 80
+  tls:
+  - hosts:
+    - kino.tino.sh
+    secretName: kino-tino-sh-tls

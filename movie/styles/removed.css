@@ -1,0 +1,36 @@
+
+body {
+	background: #FFF linear-gradient(to bottom, #3F567C, #B5CCC6) no-repeat;
+	font-family: Open Sans, sans-serif;
+}
+
+a {
+	text-decoration: none;
+	transition-duration: .3s;
+
+	&:hover {
+		transition-duration: .05s;
+	}
+}
+		.search-box {
+			background: #373D41;
+			padding: 20px;
+			position: relative;
+
+			input {
+				width: 170px;
+				border: 0;
+				padding: 10px 20px;
+				border-radius: 50px;
+				outline: none;
+				color: #999;
+				transition-duration: .3s;
+
+				&:focus {
+					color: #333;
+
+					& ~ .fa {
+						color: #999;
+					}
+				}
+			}

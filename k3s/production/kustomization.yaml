@@ -1,0 +1,6 @@
+namespace: kino
+
+bases:
+  - config.yaml
+  - ../base
+  - ingress.yaml

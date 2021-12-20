@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kino
+  name: kino
+spec:
+  replicas: 4
+  selector:
+    matchLabels:
+      app: kino
+  template:
+    metadata:
+      labels:
+        app: kino
+    spec:
+      containers:
+      - name: kino
+        image: registry.tino.sh/kino
+        env:
+          - name: MONGODB_DB
+            value: "movie"
+          - name: MONGODB_COLLECTION
+            value: "abaton"
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: MONGODB_URI
+          - name: TMDB_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: TMDB_API_KEY
+        resources:
+          requests:
+            memory: "50Mi"
+            cpu: "30m"
+          limits:
+            memory: "64Mi"
+            cpu: "100m"
+      nodeSelector:
+        arch: arm64

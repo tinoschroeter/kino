@@ -1,0 +1,4 @@
+resources:
+  - kino.yaml
+  - scraper.yaml
+  - service.yaml
