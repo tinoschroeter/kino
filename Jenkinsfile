@@ -10,7 +10,8 @@ pipeline {
         when { 
           branch 'dev'
           anyOf {
-            changeset "frontend/**"
+            changeset "movie/**"
+            changeset "scraper/**"
             changeset "Dockerfile"
             changeset "k3s/base/**"
             changeset "k3s/dev/**"
@@ -25,7 +26,8 @@ pipeline {
         when { 
           branch 'master'
           anyOf {
-            changeset "frontend/**"
+            changeset "movie/**"
+            changeset "scraper/**"
             changeset "Dockerfile"
             changeset "k3s/base/**"
             changeset "k3s/production/**"
