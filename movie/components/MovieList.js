@@ -31,24 +31,27 @@ const MovieList = ({ search }) => {
 
   const timeHandler = (e) => {
     e.preventDefault();
-    if(time < 10000000000) setTime(time * 10)
-  }
+    if (time < 10000000000) setTime(time * 10);
+  };
 
   useEffect(() => {
     fetch(`/api/movie/${time}`)
       .then((response) => response.json())
       .then((data) => {
-        setMovieList(data)
-        setFilterMovie(data)
+        setMovieList(data);
+        setFilterMovie(data);
       })
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, [time]);
 
-
   useEffect(() => {
-     setFilterMovie(movieList.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase())))
-  },[search, movieList])
+    setFilterMovie(
+      movieList.filter((movie) =>
+        movie.title.toLowerCase().includes(search.toLowerCase())
+      )
+    );
+  }, [search, movieList]);
 
   return (
     <div className="movie-list">
@@ -58,11 +61,12 @@ const MovieList = ({ search }) => {
         setRating={setRating}
       />
 
-      { loading && <Loading /> }
-      { error && <Error /> }
+      {loading && <Loading />}
+      {error && <Error />}
 
       <ul className="list">
-        { filterMovie && filterMovie.map((item) => (<MovieItem key={item.title} item={item} />)) }
+        {filterMovie &&
+          filterMovie.map((item) => <MovieItem key={item.title} item={item} />)}
       </ul>
       <LoadMore timeHandler={timeHandler} />
     </div>
@@ -70,8 +74,7 @@ const MovieList = ({ search }) => {
 };
 
 const MovieItem = ({ item }) => {
-
-  const [player, setPlayer] = useState(false)
+  const [player, setPlayer] = useState(false);
 
   return (
     <li key={item.title || "no title"} onClick={() => setPlayer(!player)}>
@@ -87,7 +90,7 @@ const MovieItem = ({ item }) => {
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
-    { player && <YoutubeEmbed embedId={item.video} /> }
+      {player && <YoutubeEmbed embedId={item.video} />}
     </li>
   );
 };
@@ -97,12 +100,12 @@ const Loading = () => {
 };
 
 const Error = (error) => {
-    return <>{error}</>;
-}
+  return <>{error}</>;
+};
 
 const LoadMore = ({ timeHandler }) => {
   return (
-    <a href="#" className="load-more" onClick={timeHandler} >
+    <a href="#" className="load-more" onClick={timeHandler}>
       Show older movies <span className="fa fa-plus"></span>
     </a>
   );
