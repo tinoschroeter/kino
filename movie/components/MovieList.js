@@ -48,7 +48,7 @@ const MovieList = ({ search }) => {
 
   useEffect(() => {
      setFilterMovie(movieList.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase())))
-  },[search])
+  },[search, movieList])
 
   return (
     <div className="movie-list">
@@ -62,7 +62,7 @@ const MovieList = ({ search }) => {
       { error && <Error /> }
 
       <ul className="list">
-        { filterMovie.map((item) => (<MovieItem key={item.title} item={item} />)) }
+        { filterMovie && filterMovie.map((item) => (<MovieItem key={item.title} item={item} />)) }
       </ul>
       <LoadMore timeHandler={timeHandler} />
     </div>
