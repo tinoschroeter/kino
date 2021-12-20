@@ -12,7 +12,7 @@ import React, { useState } from "react";
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const [search, setSearch] = useState("Search...");
+  const [search, setSearch] = useState("");
 
   const searchHandler = (e) => {
     e.preventDefault();

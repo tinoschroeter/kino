@@ -6,7 +6,7 @@ const Sitebar = ({ search, searchHandler }) => {
       </div>
 
       <div className="search-box">
-        <input type="text" placeholder={search} onChange={searchHandler}/>
+        <input type="text" value={search} placeholder="Search..." onChange={searchHandler}/>
         <p className="fa fa-search"></p>
       </div>
 
