@@ -7,30 +7,46 @@ import TopMenu from "../components/TopMenu.js";
 import FeaturedMovie from "../components/FeaturedMovie.js";
 import MovieList from "../components/MovieList.js";
 
-import React, { useState  } from "react";
+import React, { useState } from "react";
 
 const Home = () => {
-const [toggleSidebar, setToggleSidebar] = useState(false)
-const [loggedIn, setLoggedIn] = useState(false)
+  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [search, setSearch] = useState("Search...");
+
+  const searchHandler = (e) => {
+    e.preventDefault();
+    setSearch(e.target.value);
+  };
 
   return (
-    <div className={ toggleSidebar ? 'window-margin sidebar-is-open' : 'window-margin' }>
-    <Head>
-      <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <meta name="theme-color" content="#54baff" />
-      <meta name="apple-mobile-web-app-capable" content="yes" />
-      <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-      <meta name="description" content="Kino Tino"/>
-    </Head>
+    <div
+      className={
+        toggleSidebar ? "window-margin sidebar-is-open" : "window-margin"
+      }
+    >
+      <Head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="theme-color" content="#54baff" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="description" content="Kino Tino" />
+      </Head>
       <div className="window">
-        <Sidebar />
+        <Sidebar search={search} searchHandler={searchHandler} />
         <div className="main" role="main">
           <div className="top-bar">
-            { loggedIn && <ProfileBox user="Tino" /> }
-            <TopMenu toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />
+            {loggedIn && <ProfileBox user="Tino" />}
+            <TopMenu
+              toggleSidebar={toggleSidebar}
+              setToggleSidebar={setToggleSidebar}
+            />
           </div>
           <FeaturedMovie />
-          <MovieList />
+          <MovieList search={search} />
         </div>
       </div>
     </div>

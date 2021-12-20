@@ -1,4 +1,4 @@
-const Sitebar = () => {
+const Sitebar = ({ search, searchHandler }) => {
   return (
     <aside className="sidebar">
       <div className="top-bar">
@@ -6,7 +6,7 @@ const Sitebar = () => {
       </div>
 
       <div className="search-box">
-        <input type="text" placeholder="Search..." />
+        <input type="text" placeholder={search} onChange={searchHandler}/>
         <p className="fa fa-search"></p>
       </div>
 

@@ -8,12 +8,13 @@ const myLoader = ({ src, width, quality }) => {
   return `https://image.tmdb.org/t/p/w500/${src}?w=${width}&q=${quality || 75}`;
 };
 
-const MovieList = () => {
+const MovieList = ({ search }) => {
   const [movieList, setMovieList] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState(1000);
   const [rating, setRating] = useState(true);
+  const [filterMovie, setFilterMovie] = useState();
 
   const ratingHandler = (e) => {
     e.preventDefault();
@@ -36,10 +37,18 @@ const MovieList = () => {
   useEffect(() => {
     fetch(`/api/movie/${time}`)
       .then((response) => response.json())
-      .then((data) => setMovieList(data))
+      .then((data) => {
+        setMovieList(data)
+        setFilterMovie(data)
+      })
       .catch((err) => setError(err))
       .finally(() => setLoading(false));
   }, [time]);
+
+
+  useEffect(() => {
+     setFilterMovie(movieList.filter(movie => movie.title.toLowerCase().includes(search.toLowerCase())))
+  },[search])
 
   return (
     <div className="movie-list">
@@ -49,14 +58,12 @@ const MovieList = () => {
         setRating={setRating}
       />
 
-      {loading && <Loading />}
+      { loading && <Loading /> }
+      { error && <Error /> }
 
       <ul className="list">
-        {movieList.map((item) => (
-          <MovieItem key={item.title} item={item} />
-        ))}
+        { filterMovie.map((item) => (<MovieItem key={item.title} item={item} />)) }
       </ul>
-
       <LoadMore timeHandler={timeHandler} />
     </div>
   );
@@ -88,6 +95,10 @@ const MovieItem = ({ item }) => {
 const Loading = () => {
   return <>Loading...</>;
 };
+
+const Error = (error) => {
+    return <>{error}</>;
+}
 
 const LoadMore = ({ timeHandler }) => {
   return (
