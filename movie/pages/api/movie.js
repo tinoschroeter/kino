@@ -1,20 +1,14 @@
 import nextConnect from "next-connect";
-import middleware from "../../../middleware/database.js";
+import middleware from "../../middleware/database.js";
 
 const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION;
 
 const handler = nextConnect();
 handler.use(middleware);
 handler.get(async (req, res) => {
-  const { option } = req.query;
 
   let time = Date.now();
-
-  if (option && typeof +option === "Number") {
-    time = time - 60 * 60 * option;
-  } else {
-    time = time - 60 * 60 * 1000;
-  }
+  time = time - 60 * 60 * 1000;
 
   const query = { updated: { $gt: time } };
   const options = {

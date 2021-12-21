@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const Sitebar = ({ search, searchHandler }) => {
+const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
   const [menuState, setMenuState] = useState([true, false, false]);
 
   const menuStateHandler = (state) => {
@@ -9,6 +9,16 @@ const Sitebar = ({ search, searchHandler }) => {
         index == state ? (item = true) : (item = false)
       )
     );
+    switch(state) {
+      case 0: 
+        movieLocationHandler("abaton")
+        break;
+      case 1:
+        movieLocationHandler("netflix")
+        break;
+      case 2: 
+        movieLocationHandler("dammtor")
+    }
   };
 
   return (

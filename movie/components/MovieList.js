@@ -8,18 +8,18 @@ const myLoader = ({ src, width, quality }) => {
   return `https://image.tmdb.org/t/p/w500/${src}?w=${width}&q=${quality || 75}`;
 };
 
-const MovieList = ({ search }) => {
+const MovieList = ({ search, movieLocation }) => {
   const [movieList, setMovieList] = useState([]);
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
-  const [time, setTime] = useState(1000);
   const [ratingPicker, setRatingPicker] = useState(true);
   const [datePicker, setDatePicker] = useState(true);
   const [filterMovie, setFilterMovie] = useState();
+  const [noData, setNoData] = useState(true);
 
   const ratingHandler = (e) => {
     e.preventDefault();
-    setRatingPicker(!ratingPicker)
+    setRatingPicker(!ratingPicker);
 
     let sortRating;
     if (ratingPicker) {
@@ -29,6 +29,10 @@ const MovieList = ({ search }) => {
     }
     setFilterMovie(sortRating);
   };
+
+  const movieLocationHandler = (value) => {
+    setMovieLocation(value)
+  }
 
   const dateHandler = (e) => {
     e.preventDefault();
@@ -43,20 +47,15 @@ const MovieList = ({ search }) => {
     setFilterMovie(sortDate);
   };
 
-  const timeHandler = (e) => {
-    e.preventDefault();
-    if (time < 10000000000) setTime(time * 10);
-  };
-
   useEffect(() => {
-    fetch(`/api/movie/${time}`)
+    fetch("/api/movie")
       .then((response) => response.json())
       .then((data) => {
         setMovieList(data);
       })
       .catch((err) => console.error(err))
       .finally(() => setLoading(false));
-  }, [time]);
+  }, []);
 
   useEffect(() => {
     setFilterMovie(
@@ -69,20 +68,26 @@ const MovieList = ({ search }) => {
   return (
     <div className="movie-list">
       <TitleBar
+        movieLocation={movieLocation}
         ratingHandler={ratingHandler}
         setRatingPicker={setRatingPicker}
         dateHandler={dateHandler}
         datePicker={datePicker}
       />
 
-      {loading && <Loading />}
-      {error && <Error />}
+      { loading && <Loading /> }
+      { error && <Error /> }
 
       <ul className="list">
         {filterMovie &&
-          filterMovie.map((item) => <MovieItem key={item.title} item={item} />)}
+          filterMovie.map(
+            (item) =>
+              item.location === movieLocation && (
+                <MovieItem key={item.title} item={item} />
+              )
+          )}
       </ul>
-      <LoadMore timeHandler={timeHandler} />
+
     </div>
   );
 };
@@ -147,12 +152,12 @@ const Star = ({ number }) => {
   );
 };
 
-const TitleBar = ({ ratingHandler, ratingPicker, dateHandler, datePicker }) => {
+const TitleBar = ({ movieLocation, ratingHandler, ratingPicker, dateHandler, datePicker }) => {
   return (
     <div className="title-bar">
       <div className="left">
         <p className="bold">Aktuell im</p>
-        <p className="grey">Abaton</p>
+        <p className="grey">{movieLocation}</p>
       </div>
 
       <div className="right">

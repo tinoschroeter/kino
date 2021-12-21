@@ -12,11 +12,17 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [search, setSearch] = useState("");
+  const [movieLocation, setMovieLocation] = useState("abaton")
 
   const searchHandler = (e) => {
     e.preventDefault();
     setSearch(e.target.value);
   };
+
+  const movieLocationHandler = (value) => {
+    console.log(value)
+    setMovieLocation(value)
+  } 
 
   return (
     <div
@@ -35,7 +41,7 @@ const Home = () => {
         <meta name="description" content="Kino Tino" />
       </Head>
       <div className="window">
-        <Sidebar search={search} searchHandler={searchHandler} />
+        <Sidebar search={search} searchHandler={searchHandler} movieLocationHandler={movieLocationHandler} />
         <div className="main" role="main">
           <div className="top-bar">
             {loggedIn && <ProfileBox user="Tino" />}
@@ -44,7 +50,7 @@ const Home = () => {
               setToggleSidebar={setToggleSidebar}
             />
           </div>
-          <MovieList search={search} />
+          <MovieList search={search} movieLocation={movieLocation} />
         </div>
       </div>
     </div>
