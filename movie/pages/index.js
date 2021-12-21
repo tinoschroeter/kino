@@ -4,7 +4,6 @@ import Image from "next/image";
 import Sidebar from "../components/Sidebar.js";
 import ProfileBox from "../components/ProfileBox.js";
 import TopMenu from "../components/TopMenu.js";
-import FeaturedMovie from "../components/FeaturedMovie.js";
 import MovieList from "../components/MovieList.js";
 
 import React, { useState } from "react";
@@ -27,7 +26,7 @@ const Home = () => {
     >
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="theme-color" content="#54baff" />
+        <meta name="theme-color" content="#000000" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta
           name="apple-mobile-web-app-status-bar-style"
@@ -45,7 +44,6 @@ const Home = () => {
               setToggleSidebar={setToggleSidebar}
             />
           </div>
-          <FeaturedMovie />
           <MovieList search={search} />
         </div>
       </div>

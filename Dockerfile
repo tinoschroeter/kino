@@ -40,7 +40,7 @@ FROM node:alpine AS scraper
 WORKDIR /app
 
 COPY scraper/package.json .
-COPY scraper/index.js .
+COPY scraper/abaton.js .
 
 RUN npm install --only=production
 CMD ["sleep", "10000"]

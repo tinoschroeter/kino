@@ -14,12 +14,12 @@ spec:
           containers:
           - name: scraper
             image: registry.tino.sh/scraper
-            command: ["node", "index.js"]
+            command: ["node", "abaton.js"]
             env:
               - name: MONGODB_DB
                 value: "movie"
               - name: MONGODB_COLLECTION
-                value: "abaton"
+                value: "movies"
               - name: MONGODB_URI
                 valueFrom:
                   secretKeyRef:

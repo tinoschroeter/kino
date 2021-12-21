@@ -72,8 +72,9 @@ axios
                 const video = response.data.results[0];
                 if (video !== undefined && video.site === "YouTube") {
                   data.video = video.key;
-                  add2db(data);
                 }
+                  data.location = "abaton"
+                  add2db(data);
               });
           }
         });

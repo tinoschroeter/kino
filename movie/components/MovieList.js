@@ -13,20 +13,34 @@ const MovieList = ({ search }) => {
   const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [time, setTime] = useState(1000);
-  const [rating, setRating] = useState(true);
+  const [ratingPicker, setRatingPicker] = useState(true);
+  const [datePicker, setDatePicker] = useState(true);
   const [filterMovie, setFilterMovie] = useState();
 
   const ratingHandler = (e) => {
     e.preventDefault();
-    setRating(!rating);
+    setRatingPicker(!ratingPicker)
 
-    let sorting;
-    if (rating) {
-      sorting = movieList.sort((a, b) => +a.vote_average - +b.vote_average);
+    let sortRating;
+    if (ratingPicker) {
+      sortRating = movieList.sort((a, b) => +a.vote_average - +b.vote_average);
     } else {
-      sorting = movieList.sort((a, b) => +b.vote_average - +a.vote_average);
+      sortRating = movieList.sort((a, b) => +b.vote_average - +a.vote_average);
     }
-    setMovieList(sorting);
+    setFilterMovie(sortRating);
+  };
+
+  const dateHandler = (e) => {
+    e.preventDefault();
+    setDatePicker(!datePicker);
+
+    let sortDate;
+    if (datePicker) {
+      sortDate = movieList.sort((a, b) => +a.added - +b.added);
+    } else {
+      sortDate = movieList.sort((a, b) => +b.added - +a.added);
+    }
+    setFilterMovie(sortDate);
   };
 
   const timeHandler = (e) => {
@@ -39,9 +53,8 @@ const MovieList = ({ search }) => {
       .then((response) => response.json())
       .then((data) => {
         setMovieList(data);
-        setFilterMovie(data);
       })
-      .catch((err) => setError(err))
+      .catch((err) => console.error(err))
       .finally(() => setLoading(false));
   }, [time]);
 
@@ -57,8 +70,9 @@ const MovieList = ({ search }) => {
     <div className="movie-list">
       <TitleBar
         ratingHandler={ratingHandler}
-        rating={rating}
-        setRating={setRating}
+        setRatingPicker={setRatingPicker}
+        dateHandler={dateHandler}
+        datePicker={datePicker}
       />
 
       {loading && <Loading />}
@@ -133,7 +147,7 @@ const Star = ({ number }) => {
   );
 };
 
-const TitleBar = ({ ratingHandler, rating, setRating }) => {
+const TitleBar = ({ ratingHandler, ratingPicker, dateHandler, datePicker }) => {
   return (
     <div className="title-bar">
       <div className="left">
@@ -142,9 +156,15 @@ const TitleBar = ({ ratingHandler, rating, setRating }) => {
       </div>
 
       <div className="right">
+        <a href="#" onClick={dateHandler}>
+          date{" "}
+          <i className={datePicker ? "fa fa-angle-down" : "fa fa-angle-up"}></i>
+        </a>
         <a href="#" className="blue" onClick={ratingHandler}>
           Rating{" "}
-          <i className={rating ? "fa fa-angle-down" : "fa fa-angle-up"}></i>
+          <i
+            className={ratingPicker ? "fa fa-angle-down" : "fa fa-angle-up"}
+          ></i>
         </a>
       </div>
     </div>

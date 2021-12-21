@@ -9,6 +9,7 @@
 - [x] Menu animation
 - [x] Secrets einrichten
 - [ ] scaper Prometheus push gateway 
+- [ ] logging
 - [x] Sortierung
 - [x] Search
 - [ ] Trailer

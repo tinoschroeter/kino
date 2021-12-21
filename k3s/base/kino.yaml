@@ -21,7 +21,7 @@ spec:
           - name: MONGODB_DB
             value: "movie"
           - name: MONGODB_COLLECTION
-            value: "abaton"
+            value: "movies"
           - name: MONGODB_URI
             valueFrom:
               secretKeyRef:
