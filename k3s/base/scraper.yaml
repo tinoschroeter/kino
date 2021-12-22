@@ -38,7 +38,7 @@ kind: CronJob
 metadata:
   name: scraper-dammtor
 spec:
-  schedule: "*/20 * * * *"
+  schedule: "*/21 * * * *"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
   concurrencyPolicy: Forbid
@@ -72,7 +72,7 @@ kind: CronJob
 metadata:
   name: scraper-netflix
 spec:
-  schedule: "*/20 * * * *"
+  schedule: "*/22 * * * *"
   successfulJobsHistoryLimit: 3
   failedJobsHistoryLimit: 3
   concurrencyPolicy: Forbid

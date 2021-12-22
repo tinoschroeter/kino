@@ -39,7 +39,7 @@ FROM node:alpine AS scraper
 
 WORKDIR /app
 
-COPY scraper/ .
+COPY scraper .
 
 RUN npm install --only=production
 CMD ["sleep", "10000"]
