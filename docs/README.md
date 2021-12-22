@@ -4,19 +4,28 @@
 [![k3s](https://img.shields.io/badge/run%20on%20-Raspberry%20Pi-red)](https://github.com/tinoschroeter/k8s.homelab)
 [![GitHub Super-Linter](https://github.com/tinoschroeter/kino/workflows/Lint%20Code%20Base/badge.svg)](https://github.com/tinoschroeter/kino/actions/workflows/linter.yml)
 
+Um schneller gute Filme im Kino oder auf Streaming zu finden, habe ich eine kleine App in nextjs gebaut.
+
+Das ganze läuft  auf meinem PI Kubernetes Cluster.
+
+
 ## Todo
 
-- [x] Menu animation
+- [x] Menu Animation
 - [x] Secrets einrichten
-- [ ] scaper Prometheus push gateway 
+- [ ] scaper Prometheus push gateway
+- [ ] Monitoring
+- [ ] Image groesse optimieren
+- [ ] 
 - [ ] logging
 - [x] Sortierung
 - [x] Search
 - [ ] Trailer
 - [ ] Login System 
 - [ ] EMail System
-- [ ] Netfix hinzufügen
-- [ ] Dammtor Kino hinzufügen
+- [x] Netfix hinzufügen
+- [x] Dammtor Kino hinzufügen
+- [ ] refactoring
 
 ## tools
 

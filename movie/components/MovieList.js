@@ -156,7 +156,7 @@ const TitleBar = ({ movieLocation, ratingHandler, ratingPicker, dateHandler, dat
   return (
     <div className="title-bar">
       <div className="left">
-        <p className="bold">Aktuell im</p>
+        <p className="bold">Empfehlung</p>
         <p className="grey">{movieLocation}</p>
       </div>
 
