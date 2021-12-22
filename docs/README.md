@@ -8,6 +8,7 @@ Um schneller gute Filme im Kino oder auf Streaming zu finden, habe ich eine klei
 
 Das ganze läuft  auf meinem PI Kubernetes Cluster.
 
+:popcorn: [kino.tino.sh](https://kino.tino.sh)
 
 ## Todo
 
