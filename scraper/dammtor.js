@@ -28,6 +28,5 @@ axios
         list.push(titel);
       }
     });
-    console.log(list)
-    tmdb(list, "dammtor")
+    tmdb(list, "dammtor");
   });

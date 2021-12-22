@@ -26,5 +26,4 @@ axios
       }
     });
     tmdb(Array.from(list), "abaton");
-    console.log(Array.from(list));
   });

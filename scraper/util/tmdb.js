@@ -8,7 +8,6 @@ const MONGODB_DB = process.env.MONGODB_DB;
 const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION;
 const options = { useNewUrlParser: true, useUnifiedTopology: true };
 
-
 const tmdb = (list, location) => {
   const add2db = async (data) => {
     const client = new MongoClient(MONGODB_URI);
@@ -17,7 +16,7 @@ const tmdb = (list, location) => {
       const database = client.db(MONGODB_DB);
       const collection = database.collection(MONGODB_COLLECTION);
 
-      const query = { title: data.title };
+      const query = { $and: [{ title: data.title }, { location: location }] };
       const find = await collection.findOne(query);
 
       const now = Date.now();
@@ -35,6 +34,7 @@ const tmdb = (list, location) => {
           { _id: find._id },
           { $set: { updated: now } }
         );
+        console.log(`${result.modifiedCount} document was updated`);
       }
     } finally {
       await client.close();
@@ -58,6 +58,7 @@ const tmdb = (list, location) => {
                 data.video = video.key;
               }
               data.location = location;
+              //console.log(data);
               add2db(data);
             });
         }

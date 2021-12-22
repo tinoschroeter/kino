@@ -16,7 +16,6 @@ Das ganze läuft  auf meinem PI Kubernetes Cluster.
 - [ ] scaper Prometheus push gateway
 - [ ] Monitoring
 - [ ] Image groesse optimieren
-- [ ] 
 - [ ] logging
 - [x] Sortierung
 - [x] Search

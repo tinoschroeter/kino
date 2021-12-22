@@ -3,7 +3,7 @@ import axios from "axios";
 
 import tmdb from "./util/tmdb.js";
 
-const list = []
+const list = [];
 const url =
   "https://www.kinofans.com/Streaming/Streaming-Programm-Tipps-E112895.htm";
 
@@ -32,6 +32,5 @@ axios
         list.push(stripeTitel);
       }
     });
-    console.log(list)
-    tmdb(list, "netflix")
+    tmdb(list, "netflix");
   });
