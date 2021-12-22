@@ -37,10 +37,10 @@ FROM node:alpine AS scraper
 
 ENV NODE_ENV production
 
-RUN addgroup -g 1001 -S nodejs
-RUN adduser -S scraper -u 1001
+#RUN addgroup -g 1001 -S nodejs
+#RUN adduser -S scraper -u 1001
 
-USER scraper
+#USER scraper
 
 WORKDIR /app
 COPY scraper .

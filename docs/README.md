@@ -23,6 +23,7 @@ Das ganze läuft  auf meinem PI Kubernetes Cluster.
 - [ ] Trailer
 - [ ] Login System 
 - [ ] EMail System
+- [ ] frontend verbessern
 - [x] Netfix hinzufügen
 - [x] Dammtor Kino hinzufügen
 - [ ] refactoring

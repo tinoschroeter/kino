@@ -5,8 +5,8 @@ import Loader from "react-loader-spinner";
 
 import React, { useState, useEffect } from "react";
 
-const myLoader = ({ src, width, quality }) => {
-  return `https://image.tmdb.org/t/p/w500/${src}?w=${width}&q=${quality || 75}`;
+const myLoader = ({ src, width, height, quality }) => {
+  return `https://image.tmdb.org/t/p/w500/${src}?w=${width}h=${height}&q=${quality || 75}`;
 };
 
 const MovieList = ({ search, movieLocation }) => {
@@ -82,8 +82,8 @@ const MovieList = ({ search, movieLocation }) => {
             type="TailSpin"
             color="#00BFFF"
             height={200}
-            width={200}
-            timeout={10000} //10 secs
+            width={300}
+            timeout={60000} // 60 secs
           />
         </div>
       )}
@@ -104,10 +104,10 @@ const MovieList = ({ search, movieLocation }) => {
 };
 
 const MovieItem = ({ item }) => {
-  const [player, setPlayer] = useState(false);
 
   return (
-    <li key={item.title || "no title"} onClick={() => setPlayer(!player)}>
+    <Link href={`/movie/${item.id}`}>
+    <li key={item.title || "no title"}>
       <Image
         loader={myLoader}
         src={item.poster_path || "/a0BvlND2RlKgr4TejgPQZ4Q044I.jpg"}
@@ -120,8 +120,8 @@ const MovieItem = ({ item }) => {
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
-      {player && <YoutubeEmbed embedId={item.video} />}
     </li>
+    </Link>
   );
 };
 

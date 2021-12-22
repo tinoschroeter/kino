@@ -2,11 +2,11 @@ apiVersion: skaffold/v1
 kind: Config
 build:
   artifacts:
-  - image: registry.tino.sh/kino
+  - image: registry.tino.sh/kino-app
     context: ../../
     docker:
       target: kino
-  - image: registry.tino.sh/scraper
+  - image: registry.tino.sh/kino-scraper
     context: ../../
     docker:
       target: scraper

@@ -13,8 +13,8 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper
-            image: registry.tino.sh/scraper
+          - name: kino-scraper
+            image: registry.tino.sh/kino-scraper
             command: ["node", "abaton.js"]
             env:
               - name: MONGODB_DB
@@ -32,6 +32,7 @@ spec:
                     name: passwords
                     key: TMDB_API_KEY
           restartPolicy: OnFailure
+
 ---          
 apiVersion: batch/v1
 kind: CronJob
@@ -47,8 +48,8 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper
-            image: registry.tino.sh/scraper
+          - name: kino-scraper
+            image: registry.tino.sh/kino-scraper
             command: ["node", "dammtor.js"]
             env:
               - name: MONGODB_DB
@@ -81,8 +82,8 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper
-            image: registry.tino.sh/scraper
+          - name: kino-scraper
+            image: registry.tino.sh/kino-scraper
             command: ["node", "netflix.js"]
             env:
               - name: MONGODB_DB

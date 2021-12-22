@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kino
-        image: registry.tino.sh/kino
+        image: registry.tino.sh/kino-app
         env:
           - name: MONGODB_DB
             value: "movie"

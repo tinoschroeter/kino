@@ -6,4 +6,4 @@ metadata:
 data:
   PORT: "3000"
   MONGODB_DB: "movie"
-  MONGODB_COLLECTION: "abaton"
+  MONGODB_COLLECTION: "movies"
