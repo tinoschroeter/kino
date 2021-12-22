@@ -2,8 +2,7 @@
 FROM node:alpine AS builder
 WORKDIR /app
 COPY movie .
-#COPY --from=deps /app/node_modules ./node_modules
-#RUN yarn build && yarn install --production --ignore-scripts --prefer-offline
+
 RUN npm install && npm run build
 
 # Production image, copy all the files and run next
@@ -16,7 +15,6 @@ RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 # You only need to copy next.config.js if you are NOT using the default configuration
-# COPY --from=builder /app/next.config.js ./
 COPY --from=builder /app/public ./public
 COPY --from=builder --chown=nextjs:nodejs /app/.next ./.next
 COPY --from=builder /app/node_modules ./node_modules
@@ -37,8 +35,14 @@ CMD ["node_modules/.bin/next", "start"]
 
 FROM node:alpine AS scraper
 
-WORKDIR /app
+ENV NODE_ENV production
 
+RUN addgroup -g 1001 -S nodejs
+RUN adduser -S scraper -u 1001
+
+USER scraper
+
+WORKDIR /app
 COPY scraper .
 
 RUN npm install --only=production

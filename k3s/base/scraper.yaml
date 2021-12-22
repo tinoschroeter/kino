@@ -13,7 +13,7 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper-abaton
+          - name: scraper
             image: registry.tino.sh/scraper
             command: ["node", "abaton.js"]
             env:
@@ -47,7 +47,7 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper-dammtor
+          - name: scraper
             image: registry.tino.sh/scraper
             command: ["node", "dammtor.js"]
             env:
@@ -81,7 +81,7 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper-netflix
+          - name: scraper
             image: registry.tino.sh/scraper
             command: ["node", "netflix.js"]
             env:
