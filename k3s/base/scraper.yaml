@@ -1,7 +1,8 @@
+---
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: scraper
+  name: scraper-abaton
 spec:
   schedule: "*/20 * * * *"
   successfulJobsHistoryLimit: 3
@@ -12,9 +13,77 @@ spec:
       template:
         spec:
           containers:
-          - name: scraper
+          - name: scraper-abaton
             image: registry.tino.sh/scraper
             command: ["node", "abaton.js"]
+            env:
+              - name: MONGODB_DB
+                value: "movie"
+              - name: MONGODB_COLLECTION
+                value: "movies"
+              - name: MONGODB_URI
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: MONGODB_URI
+              - name: TMDB_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: TMDB_API_KEY
+          restartPolicy: OnFailure
+---          
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scraper-dammtor
+spec:
+  schedule: "*/20 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: scraper-dammtor
+            image: registry.tino.sh/scraper
+            command: ["node", "dammtor.js"]
+            env:
+              - name: MONGODB_DB
+                value: "movie"
+              - name: MONGODB_COLLECTION
+                value: "movies"
+              - name: MONGODB_URI
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: MONGODB_URI
+              - name: TMDB_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: TMDB_API_KEY
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scraper-netflix
+spec:
+  schedule: "*/20 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: scraper-netflix
+            image: registry.tino.sh/scraper
+            command: ["node", "netflix.js"]
             env:
               - name: MONGODB_DB
                 value: "movie"
