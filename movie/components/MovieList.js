@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import YoutubeEmbed from "./YoutubeEmbed";
+import Loader from "react-loader-spinner";
 
 import React, { useState, useEffect } from "react";
 
@@ -31,8 +32,8 @@ const MovieList = ({ search, movieLocation }) => {
   };
 
   const movieLocationHandler = (value) => {
-    setMovieLocation(value)
-  }
+    setMovieLocation(value);
+  };
 
   const dateHandler = (e) => {
     e.preventDefault();
@@ -75,8 +76,19 @@ const MovieList = ({ search, movieLocation }) => {
         datePicker={datePicker}
       />
 
-      { loading && <Loading /> }
-      { error && <Error /> }
+      {loading && (
+        <div>
+          <Loader
+            type="TailSpin"
+            color="#00BFFF"
+            height={100}
+            width={100}
+            timeout={3000} //3 secs
+          />
+        </div>
+      )}
+
+      {error && <Error />}
 
       <ul className="list">
         {filterMovie &&
@@ -87,7 +99,6 @@ const MovieList = ({ search, movieLocation }) => {
               )
           )}
       </ul>
-
     </div>
   );
 };
@@ -112,10 +123,6 @@ const MovieItem = ({ item }) => {
       {player && <YoutubeEmbed embedId={item.video} />}
     </li>
   );
-};
-
-const Loading = () => {
-  return <>Loading...</>;
 };
 
 const Error = (error) => {
@@ -152,7 +159,13 @@ const Star = ({ number }) => {
   );
 };
 
-const TitleBar = ({ movieLocation, ratingHandler, ratingPicker, dateHandler, datePicker }) => {
+const TitleBar = ({
+  movieLocation,
+  ratingHandler,
+  ratingPicker,
+  dateHandler,
+  datePicker,
+}) => {
   return (
     <div className="title-bar">
       <div className="left">
