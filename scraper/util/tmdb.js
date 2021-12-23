@@ -58,7 +58,6 @@ const tmdb = (list, location) => {
                 data.video = video.key;
               }
               data.location = location;
-              //console.log(data);
               add2db(data);
             });
         }

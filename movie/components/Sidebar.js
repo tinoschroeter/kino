@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
-  const [menuState, setMenuState] = useState([true, false, false]);
+  const [menuState, setMenuState] = useState([true, false, false, false]);
 
   const menuStateHandler = (state) => {
     setMenuState(

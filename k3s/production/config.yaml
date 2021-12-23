@@ -7,3 +7,4 @@ data:
   PORT: "3000"
   MONGODB_DB: "movie"
   MONGODB_COLLECTION: "movies"
+  NEXTAUTH_URL: "https://kino.tino.sh"

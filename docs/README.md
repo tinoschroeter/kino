@@ -17,7 +17,7 @@ Das ganze läuft  auf meinem PI Kubernetes Cluster.
 - [ ] scaper Prometheus push gateway
 - [ ] Monitoring
 - [x] Image groesse optimieren
-- [ ] logging
+- [x] logging
 - [x] Sortierung
 - [x] Search
 - [x] Trailer
@@ -39,11 +39,11 @@ Das ganze läuft  auf meinem PI Kubernetes Cluster.
 
 ## env vars
 
+```shell
 TMDB_API_KEY
-
 MONGODB_URI
-
 MONGODB_DB
-
 MONGODB_COLLECTION
-
+GITHUB_ID
+GITHUB_SECRET
+```

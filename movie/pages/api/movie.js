@@ -6,7 +6,6 @@ const MONGODB_COLLECTION = process.env.MONGODB_COLLECTION;
 const handler = nextConnect();
 handler.use(middleware);
 handler.get(async (req, res) => {
-
   let time = Date.now();
   time = time - 60 * 60 * 1000;
 
