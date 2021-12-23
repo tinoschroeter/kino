@@ -67,7 +67,7 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
             <a href="#">Login</a>
           </li>
           <li>
-            <a href="https://github.com/tinoschroeter/kino" target="_blank">GitHub</a>
+            <a href="https://github.com/tinoschroeter/kino" target="_blank" rel="noreferrer">GitHub</a>
           </li>
           <li>
             <a href="#">Notification</a>

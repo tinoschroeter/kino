@@ -120,7 +120,7 @@ const MovieItem = ({ item }) => {
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
-      <a className="button" href={`https://www.youtube.com/watch?v=${item.video}`} target="_blank">
+      <a className="button" href={`https://www.youtube.com/watch?v=${item.video}`} target="_blank" rel="noreferrer">
         play Trailer
       </a>
     </li>
