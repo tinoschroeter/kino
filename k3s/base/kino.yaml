@@ -18,6 +18,8 @@ spec:
       - name: kino
         image: registry.tino.sh/kino-app
         env:
+          - name: NEXTAUTH_URL
+            value: "https://kino.tino.sh"
           - name: MONGODB_DB
             value: "movie"
           - name: MONGODB_COLLECTION
