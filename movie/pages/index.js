@@ -12,7 +12,7 @@ const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [search, setSearch] = useState("");
-  const [movieLocation, setMovieLocation] = useState("abaton");
+  const [movieLocation, setMovieLocation] = useState("netflix");
 
   const searchHandler = (e) => {
     e.preventDefault();

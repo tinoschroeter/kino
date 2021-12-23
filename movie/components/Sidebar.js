@@ -11,12 +11,15 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
     );
     switch (state) {
       case 0:
-        movieLocationHandler("abaton");
-        break;
-      case 1:
         movieLocationHandler("netflix");
         break;
+      case 1:
+        movieLocationHandler("amazon");
+        break;
       case 2:
+        movieLocationHandler("abaton");
+        break;
+      case 3:
         movieLocationHandler("dammtor");
     }
   };
@@ -44,17 +47,23 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
             className={menuState[0] ? "active" : ""}
             onClick={() => menuStateHandler(0)}
           >
-            <a>Abaton</a>
+            <a>Netflix</a>
           </li>
           <li
             className={menuState[1] ? "active" : ""}
             onClick={() => menuStateHandler(1)}
           >
-            <a>Netflix</a>
+            <a>Amazon</a>
           </li>
           <li
             className={menuState[2] ? "active" : ""}
             onClick={() => menuStateHandler(2)}
+          >
+            <a>Abaton</a>
+          </li>
+          <li
+            className={menuState[3] ? "active" : ""}
+            onClick={() => menuStateHandler(3)}
           >
             <a>Dammtor</a>
           </li>
@@ -67,7 +76,13 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
             <a href="#">Login</a>
           </li>
           <li>
-            <a href="https://github.com/tinoschroeter/kino" target="_blank" rel="noreferrer">GitHub</a>
+            <a
+              href="https://github.com/tinoschroeter/kino"
+              target="_blank"
+              rel="noreferrer"
+            >
+              GitHub
+            </a>
           </li>
           <li>
             <a href="#">Notification</a>

@@ -5,7 +5,7 @@ import tmdb from "./util/tmdb.js";
 
 const list = [];
 const url =
-  "https://www.kinofans.com/Streaming/Netflix/Der-Blick-aufs-NETFLIX-Programm-E105929.htm";
+  "https://www.kinofans.com/Streaming/Amazon-Prime-Video/Der-Blick-aufs-Amazon-Prime-Video-Programm-E105933.htm";
 
 axios
   .get(url, { responseType: "arraybuffer", responseEncoding: "binary" })
@@ -26,11 +26,13 @@ axios
         !titel.match(/die wichtigsten Kinostädte*/)
       ) {
         const stripeTitel = titel
-          .replace(/\([^)]*[a-zA-Z]*\)/, "")
           .replace(/ - Staffel [0-9]/, "")
+          .replace(/\([^)]*[a-zA-Z]*\)/, "")
+          .replace(/\[OV\]/, "")
+          .replace(/\[dt.OV\]/, "")
           .trim();
         list.push(stripeTitel);
       }
     });
-    tmdb(list, "netflix");
+    tmdb(list, "amazon");
   });

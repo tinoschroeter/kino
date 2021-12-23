@@ -338,7 +338,7 @@ a:hover {
   margin-right: 0;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-evenly;
 }
 .window .main .movie-list .list li {
   flex: 0 0 130px;
@@ -354,7 +354,7 @@ a:hover {
   top: 0;
   left: 0;
   right: 0;
-  height: 195px;
+  height: 300px;
   content: "\f144";
   background: rgba(0, 0, 0, 0.3);
   border-radius: 5px;
@@ -447,4 +447,9 @@ a:hover {
 
 .movie-card {
   border-radius: 7px;
+}
+
+.image {
+  width: 200px;
+  height: 300px;
 }

@@ -113,14 +113,19 @@ const MovieItem = ({ item }) => {
         src={item.poster_path || "/a0BvlND2RlKgr4TejgPQZ4Q044I.jpg"}
         alt={item.title}
         layout="fixed"
-        width="200"
-        height="300"
+        width="220"
+        height="330"
       />
       <p className="title">
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
-      <a className="button" href={`https://www.youtube.com/watch?v=${item.video}`} target="_blank" rel="noreferrer">
+      <a
+        className="button"
+        href={`https://www.youtube.com/watch?v=${item.video}`}
+        target="_blank"
+        rel="noreferrer"
+      >
         play Trailer
       </a>
     </li>
