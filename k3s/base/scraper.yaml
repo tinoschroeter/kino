@@ -105,6 +105,40 @@ spec:
 apiVersion: batch/v1
 kind: CronJob
 metadata:
+  name: scraper-netflix-kino-de
+spec:
+  schedule: "*/22 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kino-scraper
+            image: registry.tino.sh/kino-scraper
+            command: ["node", "netflix-kino-de.js"]
+            env:
+              - name: MONGODB_DB
+                value: "movie"
+              - name: MONGODB_COLLECTION
+                value: "movies"
+              - name: MONGODB_URI
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: MONGODB_URI
+              - name: TMDB_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: TMDB_API_KEY
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
   name: scraper-amazon
 spec:
   schedule: "*/23 * * * *"
@@ -119,6 +153,40 @@ spec:
           - name: kino-scraper
             image: registry.tino.sh/kino-scraper
             command: ["node", "amazon.js"]
+            env:
+              - name: MONGODB_DB
+                value: "movie"
+              - name: MONGODB_COLLECTION
+                value: "movies"
+              - name: MONGODB_URI
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: MONGODB_URI
+              - name: TMDB_API_KEY
+                valueFrom:
+                  secretKeyRef:
+                    name: passwords
+                    key: TMDB_API_KEY
+          restartPolicy: OnFailure
+---
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: scraper-amazon-kino-de
+spec:
+  schedule: "*/23 * * * *"
+  successfulJobsHistoryLimit: 3
+  failedJobsHistoryLimit: 3
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+          - name: kino-scraper
+            image: registry.tino.sh/kino-scraper
+            command: ["node", "amazon-kino-de.js"]
             env:
               - name: MONGODB_DB
                 value: "movie"

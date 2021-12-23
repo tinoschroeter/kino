@@ -120,6 +120,7 @@ const MovieItem = ({ item }) => {
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
+      <p>{item.overview.split(".")[0]}.</p>
       <a
         className="button"
         href={`https://www.youtube.com/watch?v=${item.video}`}
