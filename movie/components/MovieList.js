@@ -1,12 +1,13 @@
 import Image from "next/image";
 import Link from "next/link";
-import YoutubeEmbed from "./YoutubeEmbed";
 import Loader from "react-loader-spinner";
 
 import React, { useState, useEffect } from "react";
 
 const myLoader = ({ src, width, height, quality }) => {
-  return `https://image.tmdb.org/t/p/w500/${src}?w=${width}h=${height}&q=${quality || 75}`;
+  return `https://image.tmdb.org/t/p/w500/${src}?w=${width}h=${height}&q=${
+    quality || 75
+  }`;
 };
 
 const MovieList = ({ search, movieLocation }) => {
@@ -104,15 +105,14 @@ const MovieList = ({ search, movieLocation }) => {
 };
 
 const MovieItem = ({ item }) => {
-
   return (
-    <Link href={`/movie/${item.id}`}>
     <li key={item.title || "no title"}>
       <Image
+        className="movie-card"
         loader={myLoader}
         src={item.poster_path || "/a0BvlND2RlKgr4TejgPQZ4Q044I.jpg"}
         alt={item.title}
-        className="cover"
+        layout="fixed"
         width="200"
         height="300"
       />
@@ -120,8 +120,10 @@ const MovieItem = ({ item }) => {
         {item.title || "no title"} / {item.vote_average}
       </p>
       <Star number={item.vote_average} />
+      <a className="button" href={`https://www.youtube.com/watch?v=${item.video}`} target="_blank">
+        play Trailer
+      </a>
     </li>
-    </Link>
   );
 };
 

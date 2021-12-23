@@ -5,7 +5,6 @@ import Sidebar from "../components/Sidebar.js";
 import ProfileBox from "../components/ProfileBox.js";
 import TopMenu from "../components/TopMenu.js";
 import MovieList from "../components/MovieList.js";
-import Snowfall from "react-snowfall";
 
 import React, { useState } from "react";
 
@@ -21,8 +20,8 @@ const Home = () => {
   };
 
   const movieLocationHandler = (value) => {
-    console.log(value);
     setMovieLocation(value);
+    setToggleSidebar(false);
   };
 
   return (
@@ -41,13 +40,14 @@ const Home = () => {
         />
         <meta name="description" content="Kino Tino" />
       </Head>
-      <Snowfall />
+
       <div className="window">
         <Sidebar
           search={search}
           searchHandler={searchHandler}
           movieLocationHandler={movieLocationHandler}
         />
+
         <div className="main" role="main">
           <div className="top-bar">
             {loggedIn && <ProfileBox user="Tino" />}
@@ -56,7 +56,13 @@ const Home = () => {
               setToggleSidebar={setToggleSidebar}
             />
           </div>
-          <MovieList search={search} movieLocation={movieLocation} />
+
+          <MovieList
+            search={search}
+            movieLocation={movieLocation}
+            setToggleSidebar={setToggleSidebar}
+            toggleSidebar={toggleSidebar}
+          />
         </div>
       </div>
     </div>

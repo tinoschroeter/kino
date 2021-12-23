@@ -16,11 +16,11 @@ Das ganze läuft  auf meinem PI Kubernetes Cluster.
 - [x] Secrets einrichten
 - [ ] scaper Prometheus push gateway
 - [ ] Monitoring
-- [ ] Image groesse optimieren
+- [x] Image groesse optimieren
 - [ ] logging
 - [x] Sortierung
 - [x] Search
-- [ ] Trailer
+- [x] Trailer
 - [ ] Login System 
 - [ ] EMail System
 - [ ] frontend verbessern

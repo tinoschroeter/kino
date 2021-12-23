@@ -9,15 +9,15 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
         index == state ? (item = true) : (item = false)
       )
     );
-    switch(state) {
-      case 0: 
-        movieLocationHandler("abaton")
+    switch (state) {
+      case 0:
+        movieLocationHandler("abaton");
         break;
       case 1:
-        movieLocationHandler("netflix")
+        movieLocationHandler("netflix");
         break;
-      case 2: 
-        movieLocationHandler("dammtor")
+      case 2:
+        movieLocationHandler("dammtor");
     }
   };
 
@@ -64,10 +64,13 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
 
         <ul className="no-bullets">
           <li>
-            <a href="#">Top 10</a>
+            <a href="#">Login</a>
           </li>
           <li>
-            <a href="#">Login</a>
+            <a href="https://github.com/tinoschroeter/kino" target="_blank">GitHub</a>
+          </li>
+          <li>
+            <a href="#">Notification</a>
           </li>
         </ul>
 
