@@ -34,6 +34,11 @@ spec:
               secretKeyRef:
                 name: passwords
                 key: TMDB_API_KEY
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: SECRET
         resources:
           requests:
             memory: "50Mi"
