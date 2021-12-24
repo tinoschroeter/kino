@@ -10,4 +10,5 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
+  database: process.env.MONGODB_URI,
 })

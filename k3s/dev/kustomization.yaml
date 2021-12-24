@@ -1,0 +1,10 @@
+namespace: dev-kino
+
+replicas:
+- name: kino
+  count: 1
+
+bases:
+  - config.yaml
+  - ../base
+  - ingress.yaml
