@@ -3,7 +3,7 @@ pipeline {
   stages {
       stage('Linting') {
           steps {
-          kustomize build . | kube-score score -
+          echo 'linting..'
           }
       }
       stage('Build Dev') {
@@ -19,6 +19,7 @@ pipeline {
         }
         steps {
             echo 'Build Dev..'
+            sh("cd k3s/dev/ && kustomize build . | kube-score score -")
             sh("cd k3s/dev/ && skaffold run")
         }   
       }
@@ -35,6 +36,7 @@ pipeline {
         }
         steps {
             echo 'Build Production....'
+            sh("cd k3s/production/ && kustomize build . | kube-score score -")
             sh("cd k3s/production/ && skaffold run")
           }  
         }
