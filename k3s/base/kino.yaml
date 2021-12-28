@@ -20,46 +20,47 @@ spec:
         envFrom:
         - configMapRef:
             name: config
-        - name: MONGODB_URI
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: MONGODB_URI
-        - name: TMDB_API_KEY
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: TMDB_API_KEY
-        - name: GITHUB_ID
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: GITHUB_ID
-        - name: GITHUB_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: GITHUB_SECRET
-        - name: SECRET
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: SECRET
-        - name: AUTH0_CLIENT_ID
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: AUTH0_CLIENT_ID
-        - name: AUTH0_ISSUER
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: AUTH0_ISSUER
-        - name: AUTH0_CLIENT_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: passwords
-              key: AUTH0_CLIENT_SECRET
+        env:
+          - name: MONGODB_URI
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: MONGODB_URI
+          - name: TMDB_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: TMDB_API_KEY
+          - name: GITHUB_ID
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: GITHUB_ID
+          - name: GITHUB_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: GITHUB_SECRET
+          - name: SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: SECRET
+          - name: AUTH0_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_ID
+          - name: AUTH0_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_SECRET
+          - name: AUTH0_ISSUER
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_ISSUER
         resources:
           requests:
             memory: "50Mi"

@@ -3,7 +3,7 @@ pipeline {
   stages {
       stage('Linting') {
           steps {
-          echo 'linting..'
+          kustomize build . | kube-score score -
           }
       }
       stage('Build Dev') {
