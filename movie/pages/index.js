@@ -1,5 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 import Sidebar from "../components/Sidebar.js";
 import ProfileBox from "../components/ProfileBox.js";
@@ -10,9 +11,9 @@ import React, { useState } from "react";
 
 const Home = () => {
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [search, setSearch] = useState("");
   const [movieLocation, setMovieLocation] = useState("netflix");
+  const { data: session } = useSession()
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -50,7 +51,7 @@ const Home = () => {
 
         <div className="main" role="main">
           <div className="top-bar">
-            {loggedIn && <ProfileBox user="Tino" />}
+            {session && <ProfileBox session={session} />}
             <TopMenu
               toggleSidebar={toggleSidebar}
               setToggleSidebar={setToggleSidebar}

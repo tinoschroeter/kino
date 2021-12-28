@@ -49,6 +49,21 @@ spec:
               secretKeyRef:
                 name: passwords
                 key: SECRET
+          - name: AUTH0_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_ID
+          - name: AUTH0_ISSUER
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_ISSUER
+          - name: AUTH0_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_SECRET
         resources:
           requests:
             memory: "50Mi"

@@ -1,9 +1,9 @@
 
-const ProfileBox = ({ user }) => {
+const ProfileBox = ({ session }) => {
+  console.log(session)
   return (
     <div className="profile-box">
-      <div className="circle">{ user.name }</div>
-      <span className="arrow fa fa-angle-down"></span>
+      <div>{ session.user.name }</div>
     </div>
   );
 };

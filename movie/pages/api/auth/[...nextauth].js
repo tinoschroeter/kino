@@ -1,14 +1,15 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import NextAuth from "next-auth";
+import Auth0Provider from "next-auth/providers/auth0";
 
-export default NextAuth({
-  secret: process.env.SECRET,
-  // Configure one or more authentication providers
+const options = {
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
+    Auth0Provider({
+      clientId: process.env.AUTH0_CLIENT_ID,
+      clientSecret: process.env.AUTH0_CLIENT_SECRET,
+      issuer: process.env.AUTH0_ISSUER,
     }),
   ],
-  database: process.env.MONGODB_URI,
-})
+  debug: true,
+};
+
+export default (req, res) => NextAuth(req, res, options);
