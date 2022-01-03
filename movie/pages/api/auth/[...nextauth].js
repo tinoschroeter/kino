@@ -9,6 +9,10 @@ const options = {
       issuer: process.env.AUTH0_ISSUER,
     }),
   ],
+  secret: process.env.SECRET,
+  session: {
+    strategy: "jwt",
+  },
   debug: true,
 };
 

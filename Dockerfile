@@ -1,12 +1,12 @@
 # Rebuild the source code only when needed
-FROM node:alpine AS builder
+FROM node:16-alpine AS builder
 WORKDIR /app
 COPY movie .
 
 RUN npm install && npm run build
 
 # Production image, copy all the files and run next
-FROM node:alpine AS kino
+FROM node:16-alpine AS kino
 WORKDIR /app
 
 ENV NODE_ENV production
@@ -33,7 +33,7 @@ ENV PORT 3000
 
 CMD ["node_modules/.bin/next", "start"]
 
-FROM node:alpine AS scraper
+FROM node:16-alpine AS scraper
 
 ENV NODE_ENV production
 

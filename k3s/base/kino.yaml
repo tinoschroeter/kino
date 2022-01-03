@@ -31,16 +31,6 @@ spec:
               secretKeyRef:
                 name: passwords
                 key: TMDB_API_KEY
-          - name: GITHUB_ID
-            valueFrom:
-              secretKeyRef:
-                name: passwords
-                key: GITHUB_ID
-          - name: GITHUB_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: passwords
-                key: GITHUB_SECRET
           - name: SECRET
             valueFrom:
               secretKeyRef:
