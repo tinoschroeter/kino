@@ -2,9 +2,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config
-  namespace: kino
+  namespace: dev-kino
 data:
   PORT: "3000"
-  MONGODB_DB: "dev-movie"
-  MONGODB_COLLECTION: "dev-movies"
+  MONGODB_DB: "movie"
+  MONGODB_COLLECTION: "movies"
   NEXTAUTH_URL: "https://dev.kino.tino.sh"

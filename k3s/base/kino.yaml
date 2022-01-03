@@ -17,13 +17,10 @@ spec:
       containers:
       - name: kino
         image: registry.tino.sh/kino-app
+        envFrom:
+        - configMapRef:
+            name: config
         env:
-          - name: NEXTAUTH_URL
-            value: "https://kino.tino.sh"
-          - name: MONGODB_DB
-            value: "movie"
-          - name: MONGODB_COLLECTION
-            value: "movies"
           - name: MONGODB_URI
             valueFrom:
               secretKeyRef:
@@ -34,21 +31,26 @@ spec:
               secretKeyRef:
                 name: passwords
                 key: TMDB_API_KEY
-          - name: GITHUB_ID
-            valueFrom:
-              secretKeyRef:
-                name: passwords
-                key: GITHUB_ID
-          - name: GITHUB_SECRET
-            valueFrom:
-              secretKeyRef:
-                name: passwords
-                key: GITHUB_SECRET
           - name: SECRET
             valueFrom:
               secretKeyRef:
                 name: passwords
                 key: SECRET
+          - name: AUTH0_CLIENT_ID
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_ID
+          - name: AUTH0_CLIENT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_CLIENT_SECRET
+          - name: AUTH0_ISSUER
+            valueFrom:
+              secretKeyRef:
+                name: passwords
+                key: AUTH0_ISSUER
         resources:
           requests:
             memory: "50Mi"

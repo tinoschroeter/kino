@@ -17,10 +17,16 @@ pipeline {
             changeset "k3s/dev/**"
           }
         }
-        steps {
-            echo 'Build Dev..'
-            sh("cd k3s/dev/ && skaffold run")
-        }   
+        stage('kube-score') {
+            steps {
+              echo "kube-score..."
+              sh("cd k3s/dev/ && kubectl kustomize . | kube-score score -")
+              }  
+            }
+            steps {
+                echo 'Build Dev..'
+                sh("cd k3s/dev/ && skaffold run")
+        }      
       }
       stage('Build Production') {
         when { 
@@ -35,6 +41,7 @@ pipeline {
         }
         steps {
             echo 'Build Production....'
+            sh("cd k3s/production/ && kustomize build . | kube-score score -")
             sh("cd k3s/production/ && skaffold run")
           }  
         }

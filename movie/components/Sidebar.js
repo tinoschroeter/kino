@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { useSession, signIn, signOut } from "next-auth/react";
 
 const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
   const [menuState, setMenuState] = useState([true, false, false, false]);
+  const { data: session } = useSession();
 
   const menuStateHandler = (state) => {
     setMenuState(
@@ -73,8 +75,14 @@ const Sitebar = ({ search, searchHandler, movieLocationHandler }) => {
 
         <ul className="no-bullets">
           <li>
-            <a href="#">Login</a>
+            {!session && <a onClick={() => signIn("auth0")}>Login</a>}
+            {session && <a onClick={signOut}>Logout</a>}
           </li>
+          {session && (
+            <li>
+              <a href="#">Preference</a>
+            </li>
+          )}
           <li>
             <a
               href="https://github.com/tinoschroeter/kino"

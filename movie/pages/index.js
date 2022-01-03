@@ -1,18 +1,22 @@
 import Head from "next/head";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 
 import Sidebar from "../components/Sidebar.js";
 import ProfileBox from "../components/ProfileBox.js";
 import TopMenu from "../components/TopMenu.js";
 import MovieList from "../components/MovieList.js";
 
-import React, { useState } from "react";
+import { FaArrowCircleUp } from "react-icons/fa";
+
+import React, { useState, useEffect } from "react";
 
 const Home = () => {
+  const [showScroll, setShowScroll] = useState(false);
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  const [loggedIn, setLoggedIn] = useState(false);
   const [search, setSearch] = useState("");
   const [movieLocation, setMovieLocation] = useState("netflix");
+  const { data: session } = useSession();
 
   const searchHandler = (e) => {
     e.preventDefault();
@@ -23,6 +27,22 @@ const Home = () => {
     setMovieLocation(value);
     setToggleSidebar(false);
   };
+
+  const checkScrollTop = () => {
+    if (!showScroll && window.pageYOffset > 400) {
+      setShowScroll(true);
+    } else if (showScroll && window.pageYOffset <= 400) {
+      setShowScroll(false);
+    }
+  };
+
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", checkScrollTop);
+  }, [showScroll]);
 
   return (
     <div
@@ -50,7 +70,7 @@ const Home = () => {
 
         <div className="main" role="main">
           <div className="top-bar">
-            {loggedIn && <ProfileBox user="Tino" />}
+            {session && <ProfileBox session={session} />}
             <TopMenu
               toggleSidebar={toggleSidebar}
               setToggleSidebar={setToggleSidebar}
@@ -65,6 +85,11 @@ const Home = () => {
           />
         </div>
       </div>
+      <FaArrowCircleUp
+        className="scrollTop"
+        onClick={scrollTop}
+        style={{ height: 40, display: showScroll ? "flex" : "none" }}
+      />
     </div>
   );
 };
