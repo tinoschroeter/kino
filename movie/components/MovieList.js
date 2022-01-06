@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import Loader from "react-loader-spinner";
 
 import React, { useState, useEffect } from "react";
@@ -17,7 +16,6 @@ const MovieList = ({ search, movieLocation }) => {
   const [ratingPicker, setRatingPicker] = useState(true);
   const [datePicker, setDatePicker] = useState(true);
   const [filterMovie, setFilterMovie] = useState();
-  const [noData, setNoData] = useState(true);
 
   const ratingHandler = (e) => {
     e.preventDefault();
@@ -30,10 +28,6 @@ const MovieList = ({ search, movieLocation }) => {
       sortRating = movieList.sort((a, b) => +b.vote_average - +a.vote_average);
     }
     setFilterMovie(sortRating);
-  };
-
-  const movieLocationHandler = (value) => {
-    setMovieLocation(value);
   };
 
   const dateHandler = (e) => {
@@ -117,10 +111,11 @@ const MovieItem = ({ item }) => {
         height="330"
       />
       <p className="title">
-        {item.title || "no title"} | {item.vote_average} | ({item.release_date.substring(0, 4)})
+        {item.title || "no title"} | {item.vote_average} | (
+        {item.release_date.substring(0, 4)})
       </p>
-      <Star number={item.vote_average} />
       <p>{item.overview.split(".")[0]}.</p>
+      <Star number={item.vote_average} />
       <a
         className="button"
         href={`https://www.youtube.com/watch?v=${item.video}`}
@@ -137,27 +132,16 @@ const Error = (error) => {
   return <>{error}</>;
 };
 
-const LoadMore = ({ timeHandler }) => {
-  return (
-    <a href="#" className="load-more" onClick={timeHandler}>
-      Show older movies <span className="fa fa-plus"></span>
-    </a>
-  );
-};
-
 const Star = ({ number }) => {
-  const stars = Math.floor(+number / 2);
-  const halfStars = stars === +number ? 0 : 1;
-  const noStars = 4 - stars;
+  number = number / 2;
+  const stars = Math.floor(number);
+  const noStars = 5 - stars >= 0 ? 5 - stars : 0;
 
   return (
     <div className="right">
       <div className="stars">
         {[...Array(stars)].map((x, i) => (
           <span className="fa fa-star" key={i}></span>
-        ))}
-        {[...Array(halfStars)].map((x, i) => (
-          <span className="fa fa-star-half-o" key={i}></span>
         ))}
         {[...Array(noStars)].map((x, i) => (
           <span className="fa fa-star-o" key={i}></span>
