@@ -117,10 +117,11 @@ const MovieItem = ({ item }) => {
         height="330"
       />
       <p className="title">
-        {item.title || "no title"} | {item.vote_average} | ({item.release_date.substring(0, 4)})
+        {item.title || "no title"} | {item.vote_average} | (
+        {item.release_date.substring(0, 4)})
       </p>
-      <Star number={item.vote_average} />
       <p>{item.overview.split(".")[0]}.</p>
+      <Star number={item.vote_average} />
       <a
         className="button"
         href={`https://www.youtube.com/watch?v=${item.video}`}
@@ -146,18 +147,15 @@ const LoadMore = ({ timeHandler }) => {
 };
 
 const Star = ({ number }) => {
-  const stars = Math.floor(+number / 2);
-  const halfStars = stars === +number ? 0 : 1;
-  const noStars = 4 - stars;
+  number = number / 2
+  const stars = Math.floor(number);
+  const noStars = (5 - stars) >= 0 ? 5 - stars : 0;
 
   return (
     <div className="right">
       <div className="stars">
         {[...Array(stars)].map((x, i) => (
           <span className="fa fa-star" key={i}></span>
-        ))}
-        {[...Array(halfStars)].map((x, i) => (
-          <span className="fa fa-star-half-o" key={i}></span>
         ))}
         {[...Array(noStars)].map((x, i) => (
           <span className="fa fa-star-o" key={i}></span>
