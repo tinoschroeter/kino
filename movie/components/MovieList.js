@@ -11,6 +11,7 @@ const myLoader = ({ src, width, height, quality }) => {
 
 const MovieList = ({ search, movieLocation }) => {
   const [movieList, setMovieList] = useState([]);
+  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [ratingPicker, setRatingPicker] = useState(true);
   const [datePicker, setDatePicker] = useState(true);
