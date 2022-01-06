@@ -1,8 +1,5 @@
 import Image from "next/image";
-import Link from "next/link";
 import Loader from "react-loader-spinner";
-
-
 
 import React, { useState, useEffect } from "react";
 
@@ -14,12 +11,10 @@ const myLoader = ({ src, width, height, quality }) => {
 
 const MovieList = ({ search, movieLocation }) => {
   const [movieList, setMovieList] = useState([]);
-  const [error, setError] = useState();
   const [loading, setLoading] = useState(true);
   const [ratingPicker, setRatingPicker] = useState(true);
   const [datePicker, setDatePicker] = useState(true);
   const [filterMovie, setFilterMovie] = useState();
-  const [noData, setNoData] = useState(true);
 
   const ratingHandler = (e) => {
     e.preventDefault();
@@ -32,10 +27,6 @@ const MovieList = ({ search, movieLocation }) => {
       sortRating = movieList.sort((a, b) => +b.vote_average - +a.vote_average);
     }
     setFilterMovie(sortRating);
-  };
-
-  const movieLocationHandler = (value) => {
-    setMovieLocation(value);
   };
 
   const dateHandler = (e) => {
@@ -140,18 +131,10 @@ const Error = (error) => {
   return <>{error}</>;
 };
 
-const LoadMore = ({ timeHandler }) => {
-  return (
-    <a href="#" className="load-more" onClick={timeHandler}>
-      Show older movies <span className="fa fa-plus"></span>
-    </a>
-  );
-};
-
 const Star = ({ number }) => {
-  number = number / 2
+  number = number / 2;
   const stars = Math.floor(number);
-  const noStars = (5 - stars) >= 0 ? 5 - stars : 0;
+  const noStars = 5 - stars >= 0 ? 5 - stars : 0;
 
   return (
     <div className="right">
