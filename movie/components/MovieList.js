@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Loader from "react-loader-spinner";
 
+
+
 import React, { useState, useEffect } from "react";
 
 const myLoader = ({ src, width, height, quality }) => {
