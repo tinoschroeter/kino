@@ -32,14 +32,13 @@ spec:
                     name: passwords
                     key: TMDB_API_KEY
           restartPolicy: OnFailure
-
 ---          
 apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: scraper-dammtor
 spec:
-  schedule: "*/21 * * * *"
+  schedule: "*/22 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -73,7 +72,7 @@ kind: CronJob
 metadata:
   name: scraper-netflix
 spec:
-  schedule: "*/22 * * * *"
+  schedule: "*/24 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -107,7 +106,7 @@ kind: CronJob
 metadata:
   name: scraper-netflix-kino-de
 spec:
-  schedule: "*/22 * * * *"
+  schedule: "*/26 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -141,7 +140,7 @@ kind: CronJob
 metadata:
   name: scraper-amazon
 spec:
-  schedule: "*/23 * * * *"
+  schedule: "*/28 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -175,7 +174,7 @@ kind: CronJob
 metadata:
   name: scraper-amazon-kino-de
 spec:
-  schedule: "*/23 * * * *"
+  schedule: "*/30 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
