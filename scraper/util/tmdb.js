@@ -30,9 +30,16 @@ const tmdb = (list, location) => {
           `A document was inserted with the _id: ${result.insertedId}`
         );
       } else {
-        const result = await collection.updateOne(
+        const result = await collection.updateMany(
           { _id: find._id },
-          { $set: { updated: now } }
+          {
+            $set: {
+              updated: now,
+              popularity: data.popularity,
+              vote_average: data.vote_average,
+              vote_count: data.vote_count,
+            },
+          }
         );
         console.log(`${result.modifiedCount} document was updated`);
       }
