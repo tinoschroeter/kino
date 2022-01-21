@@ -112,7 +112,7 @@ const MovieItem = ({ item }) => {
       />
       <p className="title">
         {item.title || "no title"} | {item.vote_average} | (
-        {item.release_date.substring(0, 4)})
+        {item.release_date?.substring(0, 4)})
       </p>
       <p>{item.overview.split(".")[0]}.</p>
       <Star number={item.vote_average} />
