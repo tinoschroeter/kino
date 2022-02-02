@@ -19,7 +19,8 @@ axios
         titel !== undefined &&
         result &&
         !titel.match(/Anzeige/) &&
-        !titel.match(/KINOFANS.com*/) &&
+        !titel.match(/KINOFANS.com/) &&
+        !titel.match(/KinoFans.com/) &&
         !titel.match(/Neue Filme im Kino/) &&
         !titel.match(/(OV)/) &&
         !titel.match(/ 3D/) &&
