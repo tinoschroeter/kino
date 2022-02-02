@@ -4,7 +4,7 @@ kind: CronJob
 metadata:
   name: scraper-abaton
 spec:
-  schedule: "*/20 * * * *"
+  schedule: "*/150 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -38,7 +38,7 @@ kind: CronJob
 metadata:
   name: scraper-dammtor
 spec:
-  schedule: "*/22 * * * *"
+  schedule: "*/152 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -72,7 +72,7 @@ kind: CronJob
 metadata:
   name: scraper-netflix
 spec:
-  schedule: "*/24 * * * *"
+  schedule: "*/154 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -106,7 +106,7 @@ kind: CronJob
 metadata:
   name: scraper-netflix-kino-de
 spec:
-  schedule: "*/26 * * * *"
+  schedule: "*/156 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -140,7 +140,7 @@ kind: CronJob
 metadata:
   name: scraper-amazon
 spec:
-  schedule: "*/28 * * * *"
+  schedule: "*/158 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
@@ -174,7 +174,7 @@ kind: CronJob
 metadata:
   name: scraper-amazon-kino-de
 spec:
-  schedule: "*/30 * * * *"
+  schedule: "*/159 * * * *"
   successfulJobsHistoryLimit: 1
   failedJobsHistoryLimit: 1
   concurrencyPolicy: Forbid
