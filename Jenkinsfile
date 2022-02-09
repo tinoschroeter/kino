@@ -19,7 +19,7 @@ pipeline {
         }
         steps {
             echo 'Build Dev..'
-            sh("cd k3s/dev/ && kubectl kustomize . | kube-score score -")
+            // sh("cd k3s/dev/ && kubectl kustomize . | kube-score score -")
             sh("cd k3s/dev/ && skaffold run")
         }   
       }
@@ -36,7 +36,7 @@ pipeline {
         }
         steps {
             echo 'Build Production....'
-            sh("cd k3s/production/ && kubectl kustomize . | kube-score score -")
+            // sh("cd k3s/production/ && kubectl kustomize . | kube-score score -")
             sh("cd k3s/production/ && skaffold run")
           }  
         }
